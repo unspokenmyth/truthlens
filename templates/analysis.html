@@ -8,13 +8,20 @@
 <body>
     <div class="container">
         <h1>Analysis Results</h1>
-        <h3>{{ article.title }}</h3>
-        <p><strong>Credibility Score:</strong> {{ credibility.credibility_score }}</p>
-        <p><strong>Bias Rating:</strong> {{ credibility.bias_rating }}</p>
-        <p><strong>Claims:</strong> {{ analysis.claims }}</p>
-        <p><strong>Emotional Score:</strong> {{ analysis.emotional_score }}</p>
-        <p><strong>Readability:</strong> {{ analysis.readability }}</p>
-        <p><strong>Fallacies:</strong> {{ analysis.fallacies }}</p>
+        {% if error %}
+            <p class="text-danger">Error: {{ error }}</p>
+        {% else %}
+            <h3>{{ article.title }}</h3>
+            <p><strong>Credibility Score:</strong> {{ credibility.credibility_score }}</p>
+            <p><strong>Bias Rating:</strong> {{ credibility.bias_rating }}</p>
+            <p><strong>Claims:</strong> {{ analysis.claims }}</p>
+            <p><strong>Emotional Score:</strong> {{ analysis.emotional_score }}</p>
+            <p><strong>Readability:</strong> {{ analysis.readability }}</p>
+            <p><strong>Fallacies:</strong> {{ analysis.fallacies }}</p>
+            <p><strong>Social Sentiment (Reddit):</strong> Score: {{ analysis.social_sentiment.sentiment_score }} (Comments: {{ analysis.social_sentiment.comment_count }})</p>
+            <p><strong>LLM Analysis:</strong> {{ analysis.llm_analysis }}</p>
+        {% endif %}
+        <a href="/" class="btn btn-secondary mt-3">Analyze Another</a>
     </div>
     <script src="/static/js/main.js"></script>
 </body>

@@ -44,12 +44,6 @@ def detect_logical_fallacies(text):
         fallacies.append('Bandwagon')
     return fallacies
 
-import requests
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
 def query_llm(article_text, context):
     headers = {"Authorization": f"Bearer {os.getenv('HF_API_KEY')}"}
     payload = {
