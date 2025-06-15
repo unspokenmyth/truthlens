@@ -1,0 +1,14 @@
+flask==2.3.3
+requests==2.31.0
+beautifulsoup4==4.12.2
+pandas==2.0.3
+feedparser==6.0.10
+python-dotenv==1.0.0
+textblob==0.17.1
+textstat==0.7.3
+langdetect==1.0.9
+spacy==3.6.1
+numpy==1.26.4
+lxml==4.9.3
+html5lib==1.1
+newspaper3k==0.2.8
