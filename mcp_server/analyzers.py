@@ -44,13 +44,19 @@ def detect_logical_fallacies(text):
         fallacies.append('Bandwagon')
     return fallacies
 
+import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 def query_llm(article_text, context):
     headers = {"Authorization": f"Bearer {os.getenv('HF_API_KEY')}"}
     payload = {
         "inputs": f"""
         You are a news credibility analyst. Analyze this article using the provided context:
 
-        ARTICLE: {article_text[:1000]}
+        ARTICLE: {article_text}
 
         CONTEXT:
         - Source: {context['domain']} (Bias: {context['bias_rating']}, Credibility: {context['credibility_score']}/10)
@@ -66,11 +72,8 @@ def query_llm(article_text, context):
         5. recommendation (trust/verify/reject)
         """
     }
-    try:
-        response = requests.post("https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-3B-Instruct", json=payload, headers=headers)
-        return response.json()
-    except:
-        return {'credibility_score': 5, 'bias_indicators': [], 'fact_check_alerts': [], 'explanation': 'LLM analysis failed', 'recommendation': 'verify'}
+    response = requests.post("https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-3B-Instruct", json=payload, headers=headers)
+    return response.json()
 
 def analyze_content(article_text, url):
     claims = extract_claims(article_text)

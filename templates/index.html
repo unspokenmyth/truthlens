@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Detector</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>News Credibility Detector</h1>
+        <form action="/analyze" method="POST">
+            <input type="text" name="url" class="form-control" placeholder="Enter article URL">
+            <button type="submit" class="btn btn-primary mt-2">Analyze</button>
+        </form>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
